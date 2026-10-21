@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Metrics } from "@/components/analytics";
+import { LanguageProvider, SkipLink } from "@/components/language-provider";
 import { profile } from "@/content/profile";
 import { baseTitle, isIndexable, siteUrl } from "@/lib/site";
 import "@fontsource-variable/dm-sans";
@@ -51,13 +52,13 @@ export default function RootLayout({
   return (
     <html lang="es-AR">
       <body>
-        <a className="skip-link" href="#contenido">
-          Saltar al contenido
-        </a>
-        <Navigation />
-        {children}
-        <Footer />
-        <Metrics />
+        <LanguageProvider>
+          <SkipLink />
+          <Navigation />
+          {children}
+          <Footer />
+          <Metrics />
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -1,16 +1,19 @@
+"use client";
 import Link from "next/link";
+import { useLanguage } from "@/components/language-provider";
+import { Lines } from "@/components/lines";
 export default function NotFound() {
+  const { copy } = useLanguage();
   return (
     <main id="contenido" className="not-found container">
-      <p className="eyebrow">404 / FUERA DEL MAPA</p>
+      <div id="inicio" />
+      <p className="eyebrow">{copy.notFound.eyebrow}</p>
       <h1>
-        Esta página
-        <br />
-        todavía no existe.
+        <Lines lines={copy.notFound.title} />
       </h1>
-      <p>Volvamos a un buen punto de partida.</p>
+      <p>{copy.notFound.text}</p>
       <Link className="button button-dark" href="/">
-        Volver al inicio ↗
+        {copy.notFound.back}
       </Link>
     </main>
   );

@@ -1,4 +1,6 @@
+"use client";
 import type { Project } from "@/content/projects";
+import { useLanguage } from "./language-provider";
 export function ProjectArt({
   kind,
   large = false,
@@ -6,6 +8,8 @@ export function ProjectArt({
   kind: Project["visual"];
   large?: boolean;
 }) {
+  const { copy } = useLanguage();
+  const art = copy.art;
   return (
     <div
       className={`project-art art-${kind} ${large ? "art-large" : ""}`}
@@ -22,25 +26,28 @@ export function ProjectArt({
           </div>
           <div className="mini-main">
             <div className="mini-top">
-              <span>Taller / Órdenes</span>
+              <span>{art.workshop}</span>
               <span>•••</span>
             </div>
             <div className="mini-heading">
-              Cada máquina,
+              {art.title[0]}
               <br />
-              su historia.
+              {art.title[1]}
             </div>
             <div className="mini-row">
               <i />
-              Ingreso<span>01</span>
+              {art.intake}
+              <span>01</span>
             </div>
             <div className="mini-row">
               <i />
-              Diagnóstico<span>02</span>
+              {art.diagnosis}
+              <span>02</span>
             </div>
             <div className="mini-row">
               <i />
-              Reparación<span>03</span>
+              {art.repair}
+              <span>03</span>
             </div>
           </div>
         </div>
@@ -53,9 +60,9 @@ export function ProjectArt({
             ))}
           </div>
           <strong>
-            LOOMARQ<span>INGENIERÍA DIGITAL</span>
+            LOOMARQ<span>{art.digital}</span>
           </strong>
-          <span className="art-foot">Personas. Procesos. Tecnología.</span>
+          <span className="art-foot">{art.loomarq}</span>
         </>
       )}
       {kind === "quasar" && (
@@ -86,14 +93,14 @@ export function ProjectArt({
             <circle cx="240" cy="175" r="5" fill="#dc9871" />
             <g fill="currentColor" fontFamily="monospace" fontSize="13">
               <text x="28" y="35">
-                GO / API REST
+                {art.api}
               </text>
               <text x="254" y="169">
-                Emisor
+                {art.sender}
               </text>
             </g>
           </svg>
-          <span className="art-foot">Tres señales. Un punto de encuentro.</span>
+          <span className="art-foot">{art.quasar}</span>
         </>
       )}
       {kind === "esp32" && (
@@ -120,7 +127,7 @@ export function ProjectArt({
             </text>
             <circle cx="370" cy="75" r="9" fill="#d3794a" />
           </svg>
-          <span className="art-foot">Un navegador. Un mundo físico.</span>
+          <span className="art-foot">{art.esp32}</span>
         </>
       )}
       {kind === "robot" && (
@@ -179,7 +186,7 @@ export function ProjectArt({
               x · y · z
             </text>
           </svg>
-          <span className="art-foot">3 GDL / infinitas preguntas</span>
+          <span className="art-foot">{art.robot}</span>
         </>
       )}
     </div>

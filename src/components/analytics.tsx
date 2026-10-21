@@ -5,6 +5,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { useLanguage } from "./language-provider";
 import {
   analyticsUrl,
   CONSENT_KEY,
@@ -24,16 +25,18 @@ import {
 } from "@/lib/analytics/client";
 
 export function PrivacyPreferences() {
+  const { copy } = useLanguage();
   return (
     <button
       className="text-button"
       onClick={() => window.dispatchEvent(new Event("mb:open-privacy"))}
     >
-      Preferencias de métricas
+      {copy.metrics.preferences}
     </button>
   );
 }
 export function Metrics() {
+  const { copy } = useLanguage();
   const pathname = usePathname();
   const [consent, setConsent] = useState<Consent | null>(null);
   const [visible, setVisible] = useState(false);
@@ -213,38 +216,31 @@ export function Metrics() {
         />
       )}
       {visible && (
-        <aside className="consent-panel" aria-label="Preferencias de métricas">
+        <aside className="consent-panel" aria-label={copy.metrics.preferences}>
           <div>
-            <span className="eyebrow">TU PRIVACIDAD</span>
-            <h2>¿Me ayudás a mejorar este espacio?</h2>
+            <span className="eyebrow">{copy.metrics.eyebrow}</span>
+            <h2>{copy.metrics.title}</h2>
             <p>
-              {active
-                ? "Con tu permiso puedo medir visitas, procedencia e interacciones. Sin tu nombre ni tu correo."
-                : "La medición no está activa en este entorno. Podés dejar elegida tu preferencia."}{" "}
-              <Link href="/privacidad">Ver detalles</Link>
+              {active ? copy.metrics.active : copy.metrics.inactive}{" "}
+              <Link href="/privacidad">{copy.metrics.details}</Link>
             </p>
-            {storageError && (
-              <p role="status">
-                Tu navegador no permite guardar la preferencia. La medición
-                permanece desactivada.
-              </p>
-            )}
+            {storageError && <p role="status">{copy.metrics.storageError}</p>}
           </div>
           <div className="consent-actions">
             <button
               className="button button-dark"
               onClick={() => choose("granted")}
             >
-              Aceptar métricas
+              {copy.metrics.accept}
             </button>
             <button
               className="button button-outline"
               onClick={() => choose("denied")}
             >
-              Solo lo necesario
+              {copy.metrics.reject}
             </button>
             <button className="text-button" onClick={() => setVisible(false)}>
-              Cerrar
+              {copy.metrics.close}
             </button>
           </div>
         </aside>
