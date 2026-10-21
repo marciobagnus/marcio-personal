@@ -1,0 +1,93 @@
+"use client";
+import { useState } from "react";
+import { projects, type Category } from "@/content/projects";
+import { ProjectArt } from "./project-art";
+import { Arrow } from "./icons";
+import { TrackedLink } from "./tracked-link";
+const filters = [
+  "Todos",
+  "Industria",
+  "Backend",
+  "IoT",
+  "Exploración",
+] as const;
+export function Projects() {
+  const [filter, setFilter] = useState<Category | "Todos">("Todos");
+  const visible = projects.filter(
+    (p) => filter === "Todos" || p.category === filter,
+  );
+  return (
+    <>
+      <div
+        className="project-filters"
+        role="group"
+        aria-label="Filtrar proyectos"
+      >
+        {filters.map((f) => (
+          <button
+            key={f}
+            aria-pressed={filter === f}
+            onClick={() => setFilter(f)}
+          >
+            {f}
+            {f === "Todos" && (
+              <span>{String(projects.length).padStart(2, "0")}</span>
+            )}
+          </button>
+        ))}
+      </div>
+      <p className="sr-only" aria-live="polite">
+        {visible.length} proyectos
+      </p>
+      <div className="project-grid">
+        {visible.map((p) => (
+          <article key={p.slug} className="project-card">
+            <TrackedLink
+              href={`/proyectos/${p.slug}`}
+              event="project_open"
+              properties={{ project: p.slug, placement: "project_grid" }}
+              className="project-image-link"
+              aria-label={`Ver caso: ${p.title}`}
+            >
+              <ProjectArt kind={p.visual} />
+              <span className="project-arrow">
+                <Arrow diagonal />
+              </span>
+            </TrackedLink>
+            <div className="project-meta">
+              <span>{p.eyebrow}</span>
+              <span>{p.year}</span>
+            </div>
+            <h3>
+              <TrackedLink
+                href={`/proyectos/${p.slug}`}
+                event="project_open"
+                properties={{ project: p.slug, placement: "project_title" }}
+              >
+                {p.title}
+              </TrackedLink>
+            </h3>
+            <p>{p.summary}</p>
+            <div className="tags">
+              {p.tags.map((t) => (
+                <span key={t}>{t}</span>
+              ))}
+            </div>
+            {p.github && (
+              <TrackedLink
+                className="repo-link"
+                href={p.github}
+                target="_blank"
+                rel="noopener"
+                event="outbound_click"
+                properties={{ target: p.slug, placement: "github_grid" }}
+              >
+                Ver en GitHub <Arrow diagonal />
+              </TrackedLink>
+            )}
+          </article>
+        ))}
+      </div>
+    </>
+  );
+}
