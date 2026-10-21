@@ -1,6 +1,6 @@
 # Marcio Bagnus · Ingeniería con mirada humana
 
-Sitio personal en español, construido con **Next.js 16.4.2, React 19.3.1 y TypeScript**. Preparado para desplegar en Vercel. La marca conecta ingeniería, personas e industria sin atribuir experiencia gerencial que no esté acreditada.
+Sitio personal en español e inglés, construido con **Next.js 16.4.2, React 19.3.1 y TypeScript**. Preparado para desplegar en Vercel. La marca conecta ingeniería, personas e industria sin atribuir experiencia gerencial que no esté acreditada.
 
 ## Ejecutar
 
@@ -43,7 +43,10 @@ src/
     proyectos/[slug]/   # Casos estáticos con generateStaticParams
     privacidad/
   components/           # UI e interacciones pequeñas
+    language-provider.tsx # Preferencia compartida, lang y posición de lectura
+    language-switch.tsx # Selector ES/EN accesible en el encabezado
   content/              # Perfil, experiencia, curiosidades y curaduría de proyectos
+    i18n/               # Diccionarios es/en tipados y combinación con datos comunes
   lib/
     site.ts             # Dominio canónico y política de indexación
     analytics/
@@ -55,9 +58,20 @@ scripts/
   verify-build.mjs      # Smoke test del HTML generado (sin navegador)
 tests/
   analytics.test.ts     # Guardas sobre atribución y parámetros sensibles
+  language.test.ts      # Preferencias, traducciones y conservación de datos comunes
 ```
 
-El contenido de páginas vive en Server Components y se genera durante el build. Solo la navegación móvil, los filtros, el clipboard y las métricas necesitan componentes cliente. No hay base de datos ni dependencia de GitHub en runtime: un cambio en la visibilidad de un repo no rompe el sitio. Para sumar proyectos, editá `src/content/projects.ts`; para modificar tu perfil o contacto, `src/content/profile.ts`.
+Las rutas, metadatos y datos estructurados siguen en Server Components. Las vistas compartidas de portada, proyectos, privacidad y 404 consumen la preferencia mediante componentes cliente, que también generan HTML inicial en español durante el build. No hay base de datos ni dependencia de GitHub en runtime: un cambio en la visibilidad de un repo no rompe el sitio. Para sumar proyectos, editá los datos comunes en `src/content/projects.ts` y sus textos en ambos diccionarios de `src/content/i18n/`; para modificar fechas, empresas o contacto, usá `src/content/profile.ts`.
+
+## Idiomas
+
+El selector ES/EN es un grupo de botones con `aria-pressed`, etiquetas en sus respectivos idiomas, foco visible y anuncio del idioma activo. Funciona con Tab, Enter y Espacio, también con el menú móvil abierto. Ambas versiones usan la misma implementación; no hay rutas `/en`, parámetros de idioma ni metadatos ingleses.
+
+`es.ts` define la estructura de los textos y `en.ts` debe cumplir el mismo tipo. Los slugs, categorías internas, fechas, empresas, tecnologías y URLs se mantienen en los archivos comunes; solo los campos editoriales y las etiquetas se traducen. Los nombres propios de empresas y proyectos se conservan; los títulos descriptivos se adaptan. El lema se adapta como **“Engineering with heart”**, una forma natural de expresar la sensibilidad humana de la ingeniería.
+
+El servidor y la primera renderización del cliente usan español. Después de hidratar se lee `mb:language:v1` de localStorage y se actualiza `document.documentElement.lang` a `es-AR` o `en`. Esta preferencia no depende de `mb:analytics-consent:v1`. Si el almacenamiento falla, el estado sigue funcionando durante la navegación cliente; una recarga completa vuelve al español si no pudo guardarse. Una preferencia guardada puede causar una breve presentación inicial en español, necesaria para conservar el HTML inicial solicitado sin cookies ni scripts previos a la hidratación.
+
+Cambiar el idioma no toca la ruta, la consulta ni el fragmento, no remonta las páginas ni reinicia los filtros, y procura mantener el elemento visible en su posición de lectura. Los enlaces conservan sus destinos originales y los eventos de métricas mantienen sus nombres y propiedades.
 
 Para crecer: agregar artículos en rutas estáticas y metadata propia; un CMS puede reemplazar la capa de contenido sin reescribir la UI. Si más adelante agregás formularios, implementá validación, protección de abuso y almacenamiento en el servidor, y medí la confirmación real de envío con un evento propio. Un clic en email **no** equivale a un contacto recibido.
 
@@ -162,7 +176,11 @@ Comprobaciones en navegador antes de tu lanzamiento:
 
 ## Validación de esta entrega
 
-Build de producción, typecheck, tests de saneamiento y smoke tests del HTML estático. La revisión visual interactiva no pudo completarse porque la política del navegador del entorno bloqueó el acceso a la preview. Tampoco se validó recepción en GA4/Vercel: requiere tus IDs y un deployment real con las funciones activadas. No se presentan métricas ficticias.
+Build de producción, typecheck, nueve tests de saneamiento/idioma, Prettier y smoke tests del HTML estático. Se revisaron portada, los cinco casos, privacidad y 404 en español e inglés con Chrome, tanto a 375 px como en escritorio. El encabezado y el menú se probaron además en nueve anchos entre 320 y 1440 px, sin desbordamientos. Por debajo de 1001 px se usa el menú compacto para dejar espacio al selector.
+
+Se comprobaron foco visible, teclado, filtros, navegación cliente, persistencia tras recargar, posición de lectura, URL con UTM/fragmento y metadatos españoles comparados con el HTML anterior. No se detectaron errores de hidratación. El selector pasó una auditoría automatizada axe de WCAG A/AA. El idioma siguió funcionando durante la navegación cliente con localStorage bloqueado; los mensajes de almacenamiento y los estados de éxito/error del clipboard se verificaron en ambos idiomas.
+
+Con el modo de depuración local se verificaron aceptación, rechazo y retirada del consentimiento, limpieza de atribución/cookies GA y los contratos de eventos `outbound_click`, `project_open`, `contact_click` y `email_copy` con atribución UTM. Cambiar el idioma no produjo pageviews adicionales ni concedió permiso para métricas. La configuración normal se restauró para el build final. La recepción real en GA4/Vercel queda pendiente de validación con los proveedores; las pruebas locales demuestran el comportamiento del sitio y sus adaptadores, no entrega externa. No se encontró una integración de Clarity en el repositorio. No se publicó en producción.
 
 ## Fuentes del contenido
 

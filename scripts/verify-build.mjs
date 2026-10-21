@@ -2,6 +2,10 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 const read = (path) => readFileSync(`.next/server/app/${path}.html`, "utf8");
 const home = read("index");
+assert.match(home, /<html[^>]*lang="es-AR"/);
+assert.ok(home.includes('aria-label="ES — Español" aria-pressed="true"'));
+assert.ok(home.includes('aria-label="EN — English" aria-pressed="false"'));
+assert.ok(home.includes("La tecnología"));
 for (const id of [
   "contenido",
   "inicio",
@@ -27,6 +31,7 @@ for (const slug of [
   "cinematica-robotica",
 ]) {
   const page = read(`proyectos/${slug}`);
+  assert.match(page, /<html[^>]*lang="es-AR"/);
   assert.equal((page.match(/<h1[ >]/g) ?? []).length, 1);
   assert.ok(page.includes("El problema"));
   assert.ok(page.includes('name="description"'));
@@ -36,8 +41,10 @@ for (const slug of [
   }
 }
 assert.ok(read("privacidad").includes("Preferencias de métricas"));
+assert.match(read("privacidad"), /<html[^>]*lang="es-AR"/);
+assert.ok(read("_not-found").includes("todavía no existe."));
 assert.ok(!home.includes('src="https://www.googletagmanager.com'));
 assert.ok(!home.includes("fonts.googleapis.com"));
 console.log(
-  "HTML smoke checks passed: anchors, metadata, project routes, public repositories, local fonts and default analytics state.",
+  "HTML smoke checks passed: Spanish SSR, language control, anchors, metadata, project routes, privacy/404, public repositories, local fonts and default analytics state.",
 );
