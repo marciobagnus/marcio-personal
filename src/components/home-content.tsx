@@ -26,6 +26,9 @@ export function HomeContent() {
               {h.hero.emphasis[1]}
             </span>
           </h1>
+          <p className="hero-professional-summary">
+            {h.hero.professionalSummary}
+          </p>
           <p className="hero-intro">{h.hero.intro}</p>
           <div className="hero-actions">
             <TrackedLink
@@ -258,8 +261,32 @@ export function HomeContent() {
                     AR <span>↔</span> IT
                   </div>
                 ) : (
-                  <div className="learn-art" aria-hidden="true">
-                    ∞
+                  <div className="curiosity-art" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 96 80"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      {c.kind === "books" ? (
+                        <>
+                          <path d="M48 22C37 14 23 14 12 18v44c11-4 25-4 36 4 11-8 25-8 36-4V18c-11-4-25-4-36 4v44" />
+                          <path d="M22 28c6-1 12 0 17 3m-17 8c6-1 12 0 17 3m18-11c5-3 11-4 17-3m-17 14c5-3 11-4 17-3" />
+                        </>
+                      ) : c.kind === "nature" ? (
+                        <>
+                          <circle cx="70" cy="18" r="8" />
+                          <path d="m10 56 25-32 23 30m-15-19 10-13 33 34M10 66h76M48 66c-12-9 15-11 5-19" />
+                        </>
+                      ) : (
+                        <>
+                          <rect x="12" y="16" width="72" height="48" rx="3" />
+                          <path d="M25 16v48m46-48v48M12 28h13M12 40h13M12 52h13m46-24h13M71 40h13M71 52h13M42 30l16 10-16 10Z" />
+                        </>
+                      )}
+                    </svg>
                   </div>
                 )}
                 <h3>{copy.curiosities[c.kind].title}</h3>

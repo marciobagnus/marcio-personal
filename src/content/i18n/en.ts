@@ -19,6 +19,8 @@ export const en: Dictionary = {
       eyebrow: "SYSTEMS ENGINEER · CÓRDOBA, AR",
       title: ["Technology", "transforms."],
       emphasis: ["People give it", "purpose."],
+      professionalSummary:
+        "Backend Software Engineer · Java, Go, .NET · 8+ years of experience",
       intro:
         "I’m Marcio. I connect engineering, people and industry to build solutions that matter.",
       projects: "Explore my projects",
@@ -304,22 +306,32 @@ export const en: Dictionary = {
     music: {
       label: "In my headphones",
       title: "Progressive house.",
-      text: "I enjoy music that gradually builds a story. Electronic music is a space I like to explore.",
+      text: "I like music that builds gradually, layer by layer. Exploring it, discovering new sets and sharing them is how I switch off.",
     },
     mind: {
       label: "On my radar",
       title: "The human mind.",
-      text: "Psychology and neuroscience spark my curiosity. I’m interested in how we learn, change and grow.",
+      text: "I’m intrigued by how we learn, what drives us and how we navigate change. That’s why psychology and neuroscience fascinate me.",
+    },
+    books: {
+      label: "Between the pages",
+      title: "Reading to broaden my perspective.",
+      text: "Books are my favourite way to take a break. I’m drawn to those that explore the human experience, spirituality and the search for meaning.",
+    },
+    nature: {
+      label: "Outdoors",
+      title: "Nature as a space to think.",
+      text: "Going for a walk, paying attention to my surroundings and slowing down helps me organise my thoughts.",
+    },
+    cinema: {
+      label: "On screen",
+      title: "Films that leave me with questions.",
+      text: "Arthouse cinema and cult films: stories with a distinctive perspective and complex characters that stay with me after the credits roll.",
     },
     italy: {
       label: "In my story",
       title: "A bridge to Italy.",
-      text: "I’m Argentine and Italian. I worked in Italy, and I enjoy connecting perspectives and cultures.",
-    },
-    learn: {
-      label: "In my nature",
-      title: "Always learning.",
-      text: "After Systems Engineering at UTN, I started a bachelor’s degree in Artificial Intelligence. Learning remains part of the journey.",
+      text: "I’m Argentine and Italian. Living and working in Italy opened me up to other cultures and taught me to build connections between different worlds.",
     },
   },
 };
