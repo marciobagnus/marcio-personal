@@ -7,7 +7,7 @@ export const profile = {
   github: "https://github.com/marciobagnus",
   linkedin: "https://www.linkedin.com/in/marciobagnus/",
   description:
-    "Ingeniero en Sistemas. Conecto tecnología, personas e industria para transformar problemas reales en soluciones con sentido.",
+    "Backend Software Engineer con +8 años en Java, Go y .NET. Mercado Libre, software CAD/CAM en Italia y sector público. Ciudadanía italiana (UE).",
   tagline: "Ingeniería con mirada humana.",
 };
 export const experience = [
@@ -48,10 +48,18 @@ export const curiosities = [
   },
   {
     number: "03",
-    kind: "italy",
+    kind: "books",
   },
   {
     number: "04",
-    kind: "learn",
+    kind: "nature",
+  },
+  {
+    number: "05",
+    kind: "cinema",
+  },
+  {
+    number: "06",
+    kind: "italy",
   },
 ] as const;

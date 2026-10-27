@@ -17,4 +17,4 @@ export const isIndexable =
     : process.env.NODE_ENV === "production");
 export const absoluteUrl = (path: string) =>
   siteUrl ? new URL(path, siteUrl).toString() : path;
-export const baseTitle = `${profile.name} · Ingeniería, personas y transformación`;
+export const baseTitle = `${profile.name} · Backend Software Engineer`;

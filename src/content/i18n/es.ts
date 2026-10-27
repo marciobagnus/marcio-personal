@@ -21,6 +21,8 @@ export const es = {
       eyebrow: "INGENIERO EN SISTEMAS · CÓRDOBA, AR",
       title: ["La tecnología", "transforma."],
       emphasis: ["Las personas", "le dan sentido."],
+      professionalSummary:
+        "Backend Software Engineer · Java, Go, .NET · +8 años de experiencia",
       intro:
         "Soy Marcio. Conecto ingeniería, personas e industria para construir soluciones que importan.",
       projects: "Explorá mis proyectos",
@@ -306,22 +308,32 @@ export const es = {
     music: {
       label: "En mis auriculares",
       title: "Progressive house.",
-      text: "Me gusta la música que construye una historia de a poco. La electrónica es un espacio que disfruto explorar.",
+      text: "Me gusta la música que se construye de a poco, capa por capa. Explorarla, descubrir sets nuevos y compartirlos es mi forma de desconectar.",
     },
     mind: {
       label: "En mi radar",
       title: "La mente humana.",
-      text: "La psicología y la neurociencia despiertan mi curiosidad. Me interesa entender cómo aprendemos, cambiamos y crecemos.",
+      text: "Me intriga cómo aprendemos, qué nos mueve y cómo atravesamos los cambios. Por eso la psicología y la neurociencia me atrapan.",
+    },
+    books: {
+      label: "Entre páginas",
+      title: "Leer para ampliar la mirada.",
+      text: "Los libros son mi pausa favorita. Voy hacia los que exploran la experiencia humana, la espiritualidad y la búsqueda de sentido.",
+    },
+    nature: {
+      label: "Al aire libre",
+      title: "Naturaleza para pensar.",
+      text: "Salir a caminar, mirar con atención y bajar el ritmo me ayuda a ordenar las ideas.",
+    },
+    cinema: {
+      label: "Frente a la pantalla",
+      title: "Cine que deja preguntas.",
+      text: "Cine de autor y películas de culto: historias con mirada propia y personajes complejos que me siguen acompañando después de los créditos.",
     },
     italy: {
       label: "En mi historia",
       title: "Un puente con Italia.",
-      text: "Soy argentino e italiano. Viví una experiencia profesional en Italia y me gusta conectar perspectivas y culturas.",
-    },
-    learn: {
-      label: "En mi manera de ser",
-      title: "Siempre aprendiendo.",
-      text: "Después de Ingeniería en Sistemas en la UTN, empecé la Licenciatura en Inteligencia Artificial. Aprender sigue siendo parte del camino.",
+      text: "Soy argentino e italiano. Vivir y trabajar en Italia me abrió a otras culturas y me enseñó a construir vínculos entre mundos distintos.",
     },
   },
 };

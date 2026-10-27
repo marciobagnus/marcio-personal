@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
-export const alt = "Marcio Bagnus · Ingeniería con mirada humana";
+export const alt =
+  "Marcio Bagnus · Backend Software Engineer. Ingeniería con mirada humana.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export default function Image() {
@@ -20,23 +21,33 @@ export default function Image() {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          fontSize: 24,
+          fontSize: 20,
         }}
       >
         <span>MB / MARCIO BAGNUS</span>
-        <span>CÓRDOBA, ARGENTINA</span>
+        <span>CÓRDOBA, ARGENTINA · CIUDADANÍA UE</span>
       </div>
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          fontSize: 78,
-          lineHeight: 1.05,
-          letterSpacing: -4,
         }}
       >
-        <span>Ingeniería con</span>
-        <span style={{ color: "#a84227" }}>mirada humana.</span>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            fontSize: 86,
+            lineHeight: 1.05,
+            letterSpacing: -4,
+          }}
+        >
+          <span>Backend</span>
+          <span style={{ color: "#a84227" }}>Software Engineer.</span>
+        </div>
+        <span style={{ fontSize: 30, marginTop: 24 }}>
+          Ingeniería con mirada humana.
+        </span>
       </div>
       <div
         style={{
@@ -48,7 +59,7 @@ export default function Image() {
         }}
       >
         <span>Marcio Bagnus</span>
-        <span>Personas · Tecnología · Transformación</span>
+        <span>Java · Go · .NET · Ex Mercado Libre</span>
       </div>
     </div>,
     size,

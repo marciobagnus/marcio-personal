@@ -324,6 +324,14 @@ h3 {
 .hero h1 > span {
   color: var(--accent);
 }
+.hero-professional-summary {
+  margin-bottom: 16px;
+  font-family: monospace;
+  font-size: 0.875rem;
+  font-weight: 550;
+  line-height: 1.6;
+  color: var(--muted);
+}
 .hero-intro {
   max-width: 460px;
   font-size: 1.25rem;
@@ -983,10 +991,11 @@ blockquote {
 }
 .curiosity-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px 28px;
 }
 .curiosity {
+  min-width: 0;
   border-top: 1px solid #57644e;
   padding-top: 16px;
 }
@@ -995,10 +1004,14 @@ blockquote {
   font-size: 0.75rem;
   color: #b9c2aa;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.curiosity-top > span:first-child {
+  color: var(--paper);
 }
 .curiosity h3 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 500;
   letter-spacing: -0.035em;
   margin-bottom: 12px;
@@ -1023,6 +1036,8 @@ blockquote {
 }
 .mind-art {
   position: relative;
+  width: fit-content;
+  margin-inline: auto;
   font-family: Georgia, serif;
   font-size: 90px;
   color: #b9c59e;
@@ -1051,13 +1066,16 @@ blockquote {
   color: #c7855c;
   font-size: 40px;
 }
-.learn-art {
+.curiosity-art {
   height: 125px;
-  text-align: center;
-  line-height: 115px;
-  font-family: Georgia, serif;
-  font-size: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #b9c59e;
+}
+.curiosity-art svg {
+  width: 96px;
+  height: 80px;
 }
 .contact-section {
   padding-bottom: 95px;
@@ -1491,10 +1509,8 @@ blockquote {
     gap: 45px;
   }
   .curiosity-grid {
-    gap: 18px;
-  }
-  .curiosity h3 {
-    font-size: 19px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 24px;
   }
   .timeline article {
     grid-template-columns: 90px 1fr;
@@ -1681,7 +1697,6 @@ blockquote {
     font-size: 34px;
   }
   .curiosity-grid {
-    grid-template-columns: 1fr 1fr;
     gap: 36px 30px;
   }
   .curiosity h3 {
@@ -2077,12 +2092,11 @@ blockquote {
     font-size: 0.75rem;
   }
   .curiosity-grid {
-    gap: 33px 23px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 33px;
   }
   .curiosity-top {
-    font-size: 0.6875rem;
-    flex-direction: column;
-    gap: 5px;
+    font-size: 0.75rem;
   }
   .curiosity h3 {
     font-size: 23px;
